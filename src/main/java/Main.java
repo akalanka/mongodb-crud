@@ -14,6 +14,7 @@ public class Main {
             System.out.println("======= Hello MongoDB : DROP ========");
             MongoDbHelper.getInstance().dropCollection("employees");
 
+            // Add documents
             System.out.println("======= Hello MongoDB : ADD ========");
             DBObject employee1 = new BasicDBObject().append("firstname", "Akalanka").append("lastname", "Senevirathne");
             MongoDbHelper.getInstance().insertDocument("employees", employee1);
@@ -27,6 +28,7 @@ public class Main {
             DBObject employee4 = new BasicDBObject().append("firstname", "Anushka").append("lastname", "Liyanage");
             MongoDbHelper.getInstance().insertDocument("employees", employee4);
 
+            // Find documents
             System.out.println("======= Hello MongoDB : FIND ONE ========");
             DBObject document = MongoDbHelper.getInstance().findOne("employees");
             System.out.println(document);
@@ -60,10 +62,13 @@ public class Main {
                 employeesByCriteria.close();
             }
 
-            // Update
-            System.out.println("Ruwan before updated : " + MongoDbHelper.getInstance().findByCriteria(""));
+            // Update documents
+            System.out.println("Ruwan before update : " + MongoDbHelper.getInstance().findOne("employees",
+                    new BasicDBObject("firstname", "Ruwan")));
             MongoDbHelper.getInstance().updateDocument("employees", new BasicDBObject("firstname", "Ruwan"),
                     new BasicDBObject("age", 51));
+            System.out.println("Ruwan after update : " + MongoDbHelper.getInstance().findOne("employees",
+                    new BasicDBObject("firstname", "Ruwan")));
 
             // Remove documents
             employeeCount = MongoDbHelper.getInstance().count("employees");

@@ -30,6 +30,12 @@ public class MongoDbHelper {
         return collection.findOne();
     }
 
+    public DBObject findOne(final String _collectionName, final DBObject _object) {
+        DBCollection collection = database.getCollection(_collectionName);
+
+        return collection.findOne(_object);
+    }
+
     public DBCursor findAll(final String _collectionName) {
         DBCollection collection = database.getCollection(_collectionName);
 
